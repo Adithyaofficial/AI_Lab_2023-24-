@@ -14,6 +14,7 @@ Step 3: Define a function bfs and take the set “visited” is empty and “que
  Step 7: Call the bfs function by passing arguments visited, graph and starting node.
 Step 8:  Stop the program.
 
+# Driver Code
 PROGRAM:
 #breadth first Search in python 
 graph = {
@@ -36,10 +37,6 @@ graph = {
       				if neighbour not in visited:
         					visited.append(neighbour)
        					 queue.append(neighbour)
-
-# Driver Code
-print("Following is the Breadth-First Search")
-bfs(visited, graph, '5')    # function calling
 
 OUTPUT :
 ![image](https://github.com/user-attachments/assets/fbd30a91-596d-4afe-b4e1-16c8d1aacb7e)
