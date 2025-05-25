@@ -1,15 +1,67 @@
-# Ex.No: 10 Learning – Use Supervised Learning  
-### DATE:                                                                            
-### REGISTER NUMBER : 
-### AIM: 
-To write a program to train the classifier for -----------------.
+# Ex.No : 13 - diabetic prediction using random forest classifier 
+
+### REGISTER NUMBER : 212223220002
+
+### AIM : To perform diabetic prediction using random forest classifier
+
 ###  Algorithm:
+1.	Load the dataset from diabetes.csv using pandas.
+2.	Check for missing values and handle them if necessary by imputing or removing them.
+3.	Split the dataset into features (X) and target variable (y).
+4.	Standardize the feature values using StandardScaler to normalize the data.
+5.	Split the dataset into training (80%) and testing (20%) sets using train_test_split().
+6.	Initialize the RandomForestClassifier with n_estimators=100 and fit it using the training data.
+7.	Use the trained model to make predictions on the test set.
+8.	Evaluate the model using accuracy
+9.	Tune hyperparameters such as n_estimators, max_depth, and min_samples_split to optimize model performance if necessary.
 
 ### Program:
+'''
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import accuracy_score, classification_report
+
+# Load the dataset
+df = pd.read_csv('diabetes.csv')
+
+# Check for missing values
+print("Missing values per column:")
+print(df.isnull().sum())
+
+# Split features and target
+X = df.iloc[:, :-1]  # All columns except the last one (features)
+y = df.iloc[:, -1]   # Last column (target variable)
+
+# Standardize features
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+# Train-test split
+X_train, X_test, y_train, y_test = train_test_split(
+    X_scaled, y, test_size=0.2, random_state=42
+)
+
+# Train Random Forest model
+clf = RandomForestClassifier(n_estimators=100, random_state=42)
+clf.fit(X_train, y_train)
+
+# Make predictions
+y_pred = clf.predict(X_test)
+
+# Evaluate model
+accuracy = accuracy_score(y_test, y_pred)
+print(f'Accuracy: {accuracy:.2f}')
+print("Classification Report:")
+print(classification_report(y_test, y_pred))
+'''
 
 ### Output:
 
 
 ### Result:
-Thus the system was trained successfully and the prediction was carried out.
+Thus the diabetes prediction was carried out by Random Forest Classifier.
